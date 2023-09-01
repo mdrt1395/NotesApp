@@ -3,12 +3,15 @@ package com.example.notesapp.Database
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.notesapp.Models.Note
+import com.example.notesapp.Utilities.DATABASE_NAME
 
 //ask about all these things
+//what is a synchronized lock
 
 @Database(entities = arrayOf(Note::class), version = 1, exportSchema = false)
-abstract class NoteDatabase {
+abstract class NoteDatabase: RoomDatabase() {
 
     abstract fun getNoteDao() : NoteDao
 
@@ -17,13 +20,13 @@ abstract class NoteDatabase {
         @Volatile
         private var INSTANCE: NoteDatabase? = null
 
-        fun getDataBase(content: Context) : NoteDatabase{
+        fun getDataBase(context: Context) : NoteDatabase{
 
             return INSTANCE?: synchronized(this){
 
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    NoteDAtabase::class.java,
+                    NoteDatabase::class.java,
                     DATABASE_NAME
                 ).build()
 
