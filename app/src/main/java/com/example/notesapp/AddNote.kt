@@ -1,6 +1,7 @@
 package com.example.notesapp
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -55,11 +56,11 @@ class AddNote : AppCompatActivity() {
 
                 val intent = Intent()
                 intent.putExtra("note", note)
-                setResult(Activity.RESULT_OK,intent)
-                finish
+                setResult(RESULT_OK,intent)
+                finish()
 
             } else {
-                Toast.makeText(this@AddNote,"Please enter some data", Toast.LENGTH_SHORT.show())
+                Toast.makeText(this@AddNote,"Please enter some data", Toast.LENGTH_SHORT)
 
             }
 
