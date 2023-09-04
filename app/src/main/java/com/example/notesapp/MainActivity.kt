@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NotesClickListener, Popup
             getContent.launch(intent)
         }
 
-        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener){
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(p0: String?): Boolean{
                 return false
             }
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), NotesAdapter.NotesClickListener, Popup
                 return true
 
             }
-        }
+        })
 
     }
 

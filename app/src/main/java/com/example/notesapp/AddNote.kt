@@ -1,15 +1,13 @@
 package com.example.notesapp
 
-import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.notesapp.Models.Note
 import com.example.notesapp.databinding.ActivityAddNoteBinding
 import java.text.SimpleDateFormat
 import java.util.Date
-import java.util.logging.SimpleFormatter
 
 class AddNote : AppCompatActivity() {
 
@@ -26,7 +24,7 @@ class AddNote : AppCompatActivity() {
         setContentView(binding.root)
 
         try {
-            old_Note = intent.getSerializableExtra("current_note")
+            old_Note = intent.getSerializableExtra("current_note") as Note
             binding.etTitle.setText(old_Note.title)
             binding.etNote.setText(old_Note.note)
             isUpdate = true
@@ -37,18 +35,18 @@ class AddNote : AppCompatActivity() {
 
         binding.imgCheck.setOnClickListener{
             val title = binding.etTitle.text.toString()
-            val note_desc = binding.etNote.text.toString()
+            val noteDesc = binding.etNote.text.toString()
 
-            if (title.isNotBlank() || note.isNotEmpty()){
+            if (title.isNotEmpty() || noteDesc.isNotEmpty()){
                 val formatter = SimpleDateFormat("EEE, d MMM yyyy HH:nn a")
 
                 if (!isUpdate){
                     note = Note(
-                        old_Note.id,title,note,formatter.format(Date())
+                        old_Note.id,title,noteDesc,formatter.format(Date())
                     )
                 } else{
                     note = Note(
-                        null,title,note_desc,formatter.format(Date())
+                        null,title,noteDesc,formatter.format(Date())
                     )
 
 
