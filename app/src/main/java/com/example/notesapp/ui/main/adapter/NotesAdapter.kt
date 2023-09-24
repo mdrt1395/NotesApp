@@ -1,4 +1,5 @@
-package com.example.notesapp.Adapter
+package com.example.notesapp.ui.main.adapter
+/*
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,16 +8,25 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notesapp.MainActivity
-import com.example.notesapp.Models.Note
+import com.example.notesapp.ui.main.MainActivity
+import com.example.notesapp.data.local.note.model.NoteEntity
 import com.example.notesapp.R
 import kotlin.random.Random
+
+/**
+ * We must not pass context as a param, it could generates memory leaks,
+ * we can get context from any view in this case [parent: ViewGroup] in onCreateViewHolder
+ * * ViewHolder and Adapter should be in different files for better practices.
+ * * Each file must have only one responsibility
+ * * * Filter should be in ViewModel it could cause a crash or ANR
+ */
+
 
 class NotesAdapter(private val context: Context, val listener: MainActivity) :
     RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
 
-    private val NotesList = ArrayList<Note>()
-    private val fullList = ArrayList<Note>()
+    private val notesList = ArrayList<NoteEntity>()
+    private val fullList = ArrayList<NoteEntity>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -26,23 +36,23 @@ class NotesAdapter(private val context: Context, val listener: MainActivity) :
     }
 
     override fun getItemCount(): Int {
-        return NotesList.size
+        return notesList.size
     }
 
-    fun updateList(newList: List<Note>) {
+    fun updateList(newList: List<NoteEntity>) {
 
         fullList.clear()
         fullList.addAll(newList)
 
-        NotesList.clear()
-        NotesList.addAll(fullList)
+        notesList.clear()
+        notesList.addAll(fullList)
         notifyDataSetChanged()
 
     }
 
     fun filterList(search: String) {
 
-        NotesList.clear()
+        notesList.clear()
 
         for (item in fullList) {
 
@@ -50,7 +60,7 @@ class NotesAdapter(private val context: Context, val listener: MainActivity) :
                 item.note?.lowercase()?.contains(search.lowercase()) == true
             ) {
 
-                NotesList.add(item)
+                notesList.add(item)
             }
 
 
@@ -61,7 +71,7 @@ class NotesAdapter(private val context: Context, val listener: MainActivity) :
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val currentNote = NotesList[position]
+        val currentNote = notesList[position]
         holder.title.text = currentNote.title
         holder.title.isSelected = true
 
@@ -77,11 +87,11 @@ class NotesAdapter(private val context: Context, val listener: MainActivity) :
         )
 
         holder.notes_layout.setOnClickListener {
-            listener.onItemClicked(NotesList[holder.adapterPosition])
+            listener.onItemClicked(notesList[holder.adapterPosition])
         }
 
         holder.notes_layout.setOnLongClickListener {
-            listener.onLongItemClicked(NotesList[holder.adapterPosition], holder.notes_layout)
+            listener.onLongItemClicked(notesList[holder.adapterPosition], holder.notes_layout)
             true
         }
 
@@ -114,9 +124,9 @@ class NotesAdapter(private val context: Context, val listener: MainActivity) :
     }
 
     interface NotesClickListener {
-        fun onItemClicked(note: Note)
-        fun onLongItemClicked(note: Note, cardView: CardView)
+        fun onItemClicked(noteEntity: NoteEntity)
+        fun onLongItemClicked(noteEntity: NoteEntity, cardView: CardView)
     }
-
-
 }
+
+ */
