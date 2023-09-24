@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">NotesApp</string>
     <string name="add_note">Add note</string>
+
+    <string name="note_title_empty">Your note title is empty</string>
+    <string name="note_content_empty">Your note content is empty</string>
+    <string name="note_saved">Your note has been saved</string>
 </resources>

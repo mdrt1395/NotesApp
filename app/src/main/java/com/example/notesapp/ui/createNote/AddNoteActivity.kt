@@ -1,20 +1,22 @@
-package com.example.notesapp
+/*
+package com.example.notesapp.ui.createNote
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.notesapp.Models.Note
+import com.example.notesapp.data.local.note.model.NoteEntity
 import com.example.notesapp.databinding.ActivityAddNoteBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class AddNote : AppCompatActivity() {
+
+class AddNoteActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddNoteBinding
 
-    private lateinit var note: Note
-    private lateinit var old_Note: Note
+    private lateinit var noteEntity: NoteEntity
+    private lateinit var old_NoteEntity: NoteEntity // You should create your model when is needed
     var isUpdate = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,9 +26,9 @@ class AddNote : AppCompatActivity() {
         setContentView(binding.root)
 
         try {
-            old_Note = intent.getSerializableExtra("current_note") as Note
-            binding.etTitle.setText(old_Note.title)
-            binding.etNote.setText(old_Note.note)
+            old_NoteEntity = intent.getSerializableExtra("current_note") as NoteEntity
+            binding.etTitle.setText(old_NoteEntity.title)
+            binding.etNote.setText(old_NoteEntity.note)
             isUpdate = true
 
         } catch (e: Exception){
@@ -38,14 +40,14 @@ class AddNote : AppCompatActivity() {
             val noteDesc = binding.etNote.text.toString()
 
             if (title.isNotEmpty() || noteDesc.isNotEmpty()){
-                val formatter = SimpleDateFormat("EEE, d MMM yyyy HH:nn a")
+                val formatter = SimpleDateFormat("yyyy:HH:dd")
 
                 if (!isUpdate){
-                    note = Note(
-                        old_Note.id,title,noteDesc,formatter.format(Date())
+                    noteEntity = NoteEntity(
+                        old_NoteEntity.id,title,noteDesc,formatter.format(Date())
                     )
                 } else{
-                    note = Note(
+                    noteEntity = NoteEntity(
                         null,title,noteDesc,formatter.format(Date())
                     )
 
@@ -53,12 +55,12 @@ class AddNote : AppCompatActivity() {
                 }
 
                 val intent = Intent()
-                intent.putExtra("note", note)
+                intent.putExtra("note", noteEntity)
                 setResult(RESULT_OK,intent)
                 finish()
 
             } else {
-                Toast.makeText(this@AddNote,"Please enter some data", Toast.LENGTH_SHORT)
+                Toast.makeText(this@AddNoteActivity,"Please enter some data", Toast.LENGTH_SHORT)
 
             }
 
@@ -70,3 +72,4 @@ class AddNote : AppCompatActivity() {
 
     }
 }
+ */

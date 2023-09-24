@@ -1,4 +1,4 @@
-package com.example.notesapp.Database
+package com.example.notesapp.data.local.note.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,7 +6,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.notesapp.Models.Note
+import androidx.room.Update
+import com.example.notesapp.data.local.note.model.NoteEntity
 
 //watch corroutines and roomdb vid after this
 
@@ -14,16 +15,17 @@ import com.example.notesapp.Models.Note
 interface NoteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(note: Note)
+    fun insert(noteEntity: NoteEntity): Long
 
     @Delete
-    fun delete(note: Note)
+    fun delete(noteEntity: NoteEntity): Int
 
     @Query("Select * from notes_table order by id ASC")
-    fun getAllNotes(): LiveData<List<Note>>
+    fun getAllNotes(): List<NoteEntity>
 
     @Query("UPDATE notes_table Set title = :title, note = :note WHERE id= :id")
-    fun update(id: Int?, title: String?, note: String?)
+    fun update(id: Int?, title: String?, note: String?): Int
 
-
+    @Update
+    fun update(noteEntity: NoteEntity): Int
 }
