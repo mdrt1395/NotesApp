@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.createNote.AddNoteActivity">
+    tools:context=".AddNote">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -41,7 +41,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <EditText
-        android:id="@+id/txtTitle"
+        android:id="@+id/et_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,7 +58,7 @@
         />
 
     <EditText
-        android:id="@+id/txtNote"
+        android:id="@+id/et_note"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="26dp"
@@ -69,7 +69,7 @@
         android:inputType="textMultiLine"
         android:lineSpacingMultiplier="1.8"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtTitle"
-        app:layout_constraintStart_toStartOf="@+id/txtTitle"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+        app:layout_constraintEnd_toEndOf="@+id/et_title"
+        app:layout_constraintStart_toStartOf="@+id/et_title"
+        app:layout_constraintTop_toBottomOf="@+id/et_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>
